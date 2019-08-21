@@ -1,15 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
 
-function App() {
+import Nav from './components/Nav';
+import Login from './components/Login';
+import PrivateRoute from './components/PrivateRoute';
+import List from './components/List';
+import ConfigureFriend from './components/ConfigureFriend'
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-     Meow
-      </header>
-    </div>
+    <BrowserRouter>
+      <Nav />
+      <Switch>
+        <Route path="/login" component={Login} />
+        <PrivateRoute path="/friends" component={List} />
+        <PrivateRoute path="/addFriend" component={ConfigureFriend} />
+      </Switch>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
